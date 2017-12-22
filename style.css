@@ -1,0 +1,41 @@
+		.content{
+			max-width: 800px;
+			margin: auto;
+			font-family: "Courier New";
+		}
+		
+        html, body {
+            height: 100%;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+        
+        .placeholder {
+            text-align: center;
+        }
+
+        .fancy-image img {
+            display: block;
+            margin: 10px auto 0;
+            width: 50%;
+        }
+
+		a:link{
+			text-decoration: none;
+			color: black;
+			background-color: gray;
+		}
+		a:hover{
+			text-decoration: none;
+			color: gray;
+			background-color: black;
+		}
+		
+		td{
+			padding-right: 4px;
+			padding-left: 4px
+		}
