@@ -29,6 +29,12 @@ gulp.task('clean', function(done) {
 	done();
 });
 
+
+gulp.task('cname', function() {
+	return gulp.src('./CNAME')
+		.pipe(gulp.dest('./dist'))
+});
+
 gulp.task('html', function() {
 	return gulp.src('./src/index.html')
 		.pipe(gulp.dest('./dist'))
@@ -48,7 +54,7 @@ gulp.task('sass', function() {
 
 gulp.task('build', ['sass', 'html', 'assets']);
 
-gulp.task('deploy', ['build'], function() {
+gulp.task('deploy', ['build', 'cname'], function() {
 	return gulp.src('./dist/**/*')
 		.pipe(ghPages());
 });
