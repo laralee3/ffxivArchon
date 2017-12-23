@@ -1,0 +1,27 @@
+{
+  "name": "ffxivarchon",
+  "version": "1.0.0",
+  "description": "Homepage for the Archon FFXIV FC",
+  "scripts": {
+    "assets": "cp -R src/assets dist/assets",
+    "build": "npm run clean && mkdir dist && npm run html && npm run assets && npm run sass",
+    "clean": "rm -rf ./dist",
+    "html": "cp src/index.html dist",
+    "sass": "node-sass src/main.scss --output dist --output-style compressed",
+    "start": "npm run watch",
+    "watch": "watch \"npm run build\" ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laralee3/ffxivArchon.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.21.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {}
+}
