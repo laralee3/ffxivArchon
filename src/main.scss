@@ -1,7 +1,10 @@
+$backgroundColor: #121212;
+$iconOffset: 20px;
 $menuHeight: 60px;
+$menuToggleHeight: 30px;
 
-html, body, .content, .intro {
-	background-color: #121212;
+html, body, .content, .intro, .navigation {
+	background-color: $backgroundColor;
 	color: #FFFFFF;
 	font-family: 'Lato', sans-serif;
 	height: 100%;
@@ -9,6 +12,7 @@ html, body, .content, .intro {
 	margin: 0;
 	padding: 0;
 	position: absolute;
+	font-size: 20px;
 	top: 0;
 	width: 100%;
 }
@@ -27,54 +31,78 @@ html, body, .content, .intro {
 }
 
 .menu {
-	width: 100%; 
+	display: none;
 	height: $menuHeight;
-
-	span {
-		height: 100%;
-		display: table-cell;
-		vertical-align: middle;
-	}
+	pointer-events: none;
+	position: relative;
+	width: 100%; 
+	z-index: 10;
 
 	img {
-		height: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.archon {
+		height: 75%;
+		left: $iconOffset;
+	}
+
+	.close {
+		display: none;
 	}
 
 	.fcname {
+		height: 100%;
+		position: absolute;
 		font-size: 40px;
-		padding-left: 15px;
+		padding-left: 75px;
 		font-family: 'Monoton', cursive;
 		text-shadow: 1px 1px 2px black;
+	}
+
+	.hamburger {
+		height: $menuToggleHeight;
+		right: $iconOffset;
+	}
+}
+
+.navigation {
+	display: none;
+	opacity: 0;
+	text-align: center;
+	z-index: 20;
+
+	.close {
+		height: $menuToggleHeight;
+		position: absolute;
+		right: $iconOffset;
+		top: 15px; // Fix to sync with 
+	}
+
+	.link {
+		margin-bottom: 15px;
+		cursor: pointer;
 	}
 }
 
 .content {
-	opacity: 0;
 	background-color: transparent;
+	opacity: 0;
 
 	section {
 		width: 100%;
 		height: calc(100% - #{$menuHeight});
 		display: none;
-		margin: 0;
 		padding: 0;
 		position: absolute;
 		top: $menuHeight;
 	}
 
-	.visible {
-		display: table;
-
-		div {
-			display: table-cell;
-			vertical-align: middle;
-		}
-	}
-
-	.title {
-		.description, .server {
-			display: table-cell;
-			vertical-align: middle;
+	.home {
+		.hometext {
+			margin: 0 10% 15px;
 		}
 	}
 	
@@ -95,11 +123,35 @@ html, body, .content, .intro {
 			display: none;
 		}
 	}
+
+	.visible { // Duped visible class; TODO-Fix 
+		animation: visibility 0.25s;
+		display: table;
+		opacity: 1;
+		pointer-events: auto;
+	
+		> div {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+}
+
+.visible {
+	animation: visibility 0.25s;
+	display: table;
+	opacity: 1;
+	pointer-events: auto;
+	
+	> div {
+		display: table-cell;
+		vertical-align: middle;
+	}
 }
 
 @media only screen and (min-device-width : 768px) {
 	.content {
-		.title {
+		.home {
 			.archon {
 				left: 20%;
 	
@@ -136,5 +188,14 @@ html, body, .content, .intro {
 	}
 	100% {
 		opacity: 0;
+	}
+}
+
+@keyframes visibility {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
