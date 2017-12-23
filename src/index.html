@@ -7,45 +7,38 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="icon" href="assets/archon.png">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Monoton" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="main.js"></script>
 	<title>FFXIV Archon FC</title>
-
-	<script>
-		$(function() {
-			setTimeout(function() {
-				$('#intro').animate({
-					opacity: 0
-				}, 500);
-				$('#content').show().animate({
-					opacity: 1
-				}, 500);
-			}, 2000); // set to around animation cycle for intro
-		});
-	</script>
 </head>
 
 <body>
-	<div id="intro">
+	<div class="intro">
 		<img src="assets/archon.svg">
 	</div>
-	<div id="content">
-		<header id="title">
-			<div class="background"></div>
-			<div class="archon">
-				<span>
-					<img src="assets/archon.svg">
-				</span>
-				<span class="fcname">Archon</span>
+	<div class="menu">
+		<span>
+			<img src="assets/archon.svg">
+		</span>
+		<span class="fcname">Archon</span>
+	</div>
+	<div class="content">
+		<section class="title">
+			<div>
+				<div class="server">Midgardsormr</div>
+				<div class="description">
+					We are a growing, semi-casual FC with active members and raid statics.
+				</div>
 			</div>
-		</header>
+		</section>
 
-		<section id="discord">
+		<section class="discord">
 			<iframe src="https://discordapp.com/widget?id=136312182693560320&theme=dark" width="100%" height="100%" allowtransparency="true"
 			 frameborder="0"></iframe>
 		</section>
 
-		<section id="raid">
+		<section class="raid">
 			<div class="mobile calendar">
 				<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=ffxivarchon%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FLos_Angeles"
 				 style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>

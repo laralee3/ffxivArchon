@@ -1,4 +1,9 @@
-html, body, #intro {
+$menuHeight: 60px;
+
+html, body, .content, .intro {
+	background-color: #121212;
+	color: #FFFFFF;
+	font-family: 'Lato', sans-serif;
 	height: 100%;
 	left: 0;
 	margin: 0;
@@ -6,116 +11,117 @@ html, body, #intro {
 	position: absolute;
 	top: 0;
 	width: 100%;
-	background-color: #121212;
-	color: #FFFFFF;
 }
 
-section {
-	max-width: 80%;
-	margin: 80px auto 0;
-	font-family: 'Roboto', sans-serif;
-}
-
-#intro {
+.intro {
 	z-index: 10;
-	background-color: #121212;
+
+	img {
+		animation: pulse 2s infinite;
+		height: 18%;
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.menu {
+	width: 100%; 
+	height: $menuHeight;
+
+	span {
+		height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+	}
 
 	img {
 		height: 50%;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		animation: pulse 2.5s infinite;
+	}
+
+	.fcname {
+		font-size: 40px;
+		padding-left: 15px;
+		font-family: 'Monoton', cursive;
+		text-shadow: 1px 1px 2px black;
 	}
 }
 
-#content {
-	display: none;
+.content {
 	opacity: 0;
-}
+	background-color: transparent;
 
-#title {
-	$titleHeight: 768px;
-
-	.background {
-		background: url('assets/foreverarchon.jpg') no-repeat top center fixed; 
-		height: $titleHeight;
-		filter: blur(2px);
-		background-size: cover;
-	}
-	.archon {
-		margin: 0 auto;
-		top: 0;
-		left: 30px;
+	section {
+		width: 100%;
+		height: calc(100% - #{$menuHeight});
+		display: none;
+		margin: 0;
+		padding: 0;
 		position: absolute;
-		display: table;
-		height: $titleHeight;
+		top: $menuHeight;
+	}
 
-		span {
+	.visible {
+		display: table;
+
+		div {
 			display: table-cell;
 			vertical-align: middle;
 		}
+	}
 
-		img {
-			height: 100px;
-		}
-
-		.fcname {
-			font-size: 40px;
-			padding-left: 15px;
-			text-shadow: 1px 1px 2px black;
+	.title {
+		.description, .server {
+			display: table-cell;
+			vertical-align: middle;
 		}
 	}
-}
-
-#discord {
-	height: 500px;
-}
-
-#raid {
-	.calendar {
-		margin: 0 auto;
+	
+	.discord {
+		height: 500px;
 	}
-
-	.mobile {
-		display: block;
-	}
-
-	.desktop {
-		display: none;
+	
+	.raid {
+		.calendar {
+			margin: 0 auto;
+		}
+	
+		.mobile {
+			display: block;
+		}
+	
+		.desktop {
+			display: none;
+		}
 	}
 }
 
 @media only screen and (min-device-width : 768px) {
-	#title {
-		$titleHeight: 1000px;
-		.background {
-			height: $titleHeight;
-		}
-
-		.archon {
-			height: $titleHeight;
-			left: 20%;
-
-			.fcname {
-				font-size: 60px;
-				padding-left: 15px;
+	.content {
+		.title {
+			.archon {
+				left: 20%;
+	
+				.fcname {
+					font-size: 100px;
+					padding-left: 15px;
+				}
 			}
 		}
-	}
-
-	#discord {
-		max-width: 50%;
-	}
-
-	#raid {
-		.mobile {
-			display: none;
+	
+		.discord {
+			max-width: 50%;
 		}
 	
-		.desktop {
-			display: block;
+		.raid {
+			.mobile {
+				display: none;
+			}
+		
+			.desktop {
+				display: block;
+			}
 		}
 	}
 }
@@ -123,11 +129,10 @@ section {
 @keyframes pulse {
 	0% {
 		opacity: 0;
-
 	}
 	70% {
 		opacity: 1;
-
+		filter: none;
 	}
 	100% {
 		opacity: 0;
