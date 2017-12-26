@@ -111,9 +111,18 @@ html, body, .content, .intro, .navigation {
 	}
 	
 	.raid {
-		.calendar {
+		> div {
 			margin: 0 auto;
 			padding: 0 5%;
+		}
+
+		.signup {
+			margin: 0 0 25px;
+		}
+
+		.calendar {
+			height: 80%;
+			max-height: 80%;
 		}
 	
 		.mobile {
@@ -174,9 +183,9 @@ html, body, .content, .intro, .navigation {
 			.gallery {
 				display: block;
 				height: 50%;
-				width: 43%;
+				width: 46%;
 				overflow: hidden;
-				right: 5%;
+				right: 8%;
 				position: absolute;
 				top: 50%;
 				transform: translateY(-50%);
@@ -193,7 +202,7 @@ html, body, .content, .intro, .navigation {
 			}
 
 			.hometext {
-				margin: 0 52% 15px 5%;
+				margin: 0 58% 15px 8%;
 			}
 		}
 	
