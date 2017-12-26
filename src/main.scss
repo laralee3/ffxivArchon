@@ -101,6 +101,10 @@ html, body, .content, .intro, .navigation {
 	}
 
 	.home {
+		.gallery {
+			display: none;
+		}
+
 		.hometext {
 			margin: 0 10% 15px;
 		}
@@ -166,6 +170,31 @@ html, body, .content, .intro, .navigation {
 					padding-left: 15px;
 				}
 			}
+
+			.gallery {
+				display: block;
+				height: 50%;
+				width: 43%;
+				overflow: hidden;
+				right: 5%;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				opacity: 0;
+
+				.gallery-image {
+					background-image: url('assets/gallery/1.png');
+					width: 100%;
+					height: 100%;
+					background-position: center;
+					background-size: cover;
+					animation: galleryimagepulse 30s infinite;
+				}
+			}
+
+			.hometext {
+				margin: 0 52% 15px 5%;
+			}
 		}
 	
 		.contact {
@@ -186,14 +215,33 @@ html, body, .content, .intro, .navigation {
 	}
 }
 
+@keyframes galleryimagepulse {
+	0% {
+		transform: scale(1);
+	}
+
+	45% {
+		transform: scale(1.05);
+	}
+
+	55% {
+		transform: scale(1.05);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
 @keyframes pulse {
 	0% {
 		opacity: 0;
 	}
+
 	70% {
 		opacity: 1;
-		filter: none;
 	}
+
 	100% {
 		opacity: 0;
 	}
@@ -203,6 +251,7 @@ html, body, .content, .intro, .navigation {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
