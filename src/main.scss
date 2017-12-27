@@ -2,6 +2,7 @@ $backgroundColor: #121212;
 $iconOffset: 20px;
 $menuHeight: 60px;
 $menuToggleHeight: 30px;
+$slideInOffset: 12px;
 
 html, body, .content, .intro, .navigation {
 	background-color: $backgroundColor;
@@ -15,10 +16,14 @@ html, body, .content, .intro, .navigation {
 	font-size: 20px;
 	top: 0;
 	width: 100%;
+	background-image: url('assets/background.png');
+	background-position: center;
+	background-size: cover;
 }
 
 .intro {
 	z-index: 10;
+	background-image: none;
 
 	img {
 		animation: pulse 2s infinite;
@@ -37,6 +42,12 @@ html, body, .content, .intro, .navigation {
 	position: relative;
 	width: 100%; 
 	z-index: 10;
+	transform: translateY($slideInOffset);
+	transition: all 1s;
+
+	&.slidein {
+		transform: translateY(0);
+	}
 
 	img {
 		position: absolute;
@@ -107,6 +118,12 @@ html, body, .content, .intro, .navigation {
 
 		.hometext {
 			margin: 0 10% 15px;
+			transform: translateX($slideInOffset);
+			transition: all 1s;
+		
+			&.slidein {
+				transform: translateX(0);
+			}
 		}
 	}
 	
@@ -114,6 +131,7 @@ html, body, .content, .intro, .navigation {
 		> div {
 			margin: 0 auto;
 			padding: 0 5%;
+			height: 100%;
 		}
 
 		.signup {
@@ -135,11 +153,26 @@ html, body, .content, .intro, .navigation {
 	}
 
 	.contact {
-		.discord {
-			height: 80%;
+		> div {
 			margin: 0 auto;
-			max-height: 80%;
 			padding: 0 5%;
+			height: 100%;
+		}
+
+		.discord {
+			height: 70%;
+			max-height: 70%;
+			margin: 0 auto;
+		}
+
+		.information {
+			font-size: 16px;
+			margin-bottom: 25px;
+			text-align: center;
+
+			& > div {
+				margin-bottom: 15px;
+			}
 		}
 	}
 
@@ -209,6 +242,10 @@ html, body, .content, .intro, .navigation {
 		.contact {
 			.discord {
 				max-width: 75%;
+			}
+
+			.information {
+				font-size: 20px;
 			}
 		}
 
