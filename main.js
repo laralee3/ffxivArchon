@@ -85,6 +85,8 @@ $(function() {
             intro.hide();
             views.home.add(content).add(menu).addClass(visible);
             galleryAnimation();
+            menu.addClass('slidein');
+            views.home.find('.hometext').addClass('slidein');
         }, 250);
     }, 1500); // Matches animation cycle for intro
 
