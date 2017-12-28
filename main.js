@@ -10,14 +10,12 @@ $(function() {
     var intro = $('.intro');
     var menu = $('.menu');
     var navigation = $('.navigation');
-    var static1Table = $('.static-1 table');
-    var static2Table = $('.static-2 table');
 
     // View reference; all new views here
     var views = {
-        home: $('.home'),
         calendar: $('.calendar'),
         contact: $('.contact'),
+        home: $('.home'),
         statics: $('.statics')
     };
 
@@ -27,13 +25,15 @@ $(function() {
     var links = navigation.find('.link');
 
     // Jquery classnames, strings, etc.
+    var classiconPath = 'assets/classicons/';
+    var div = '<div>';
+    var imageNumber = 1; // Crappy gallery, but a start
+    var img = '<img>';
+    var table = '<table>';
     var tablerow = '<tr>';
     var tablecell = '<td>';
-    var img = '<img>';
-    var visible = 'visible';
-    var imageNumber = 1; // Crappy gallery, but a start
     var totalImages = 10;
-    var classiconPath = 'assets/classicons/';
+    var visible = 'visible';
 
     ////////////////////////////////////////////////////
     // Functionality
@@ -80,8 +80,8 @@ $(function() {
     // Google Sheets logic
     ////////////////////////////////////////////////////
 
-    function displayStaticData(targetTable, static, groupname) {
-        targetTable.append($(tablerow).append($(tablecell).html(groupname).addClass('static-name')))
+    function displayStaticData(targetTable, static, staticNum) {
+        targetTable.append($(tablerow).append($(tablecell).html('Static ' + staticNum).addClass('static-name')))
 
         for (var x = 0, len = static.length; x < len; x++) {
             var role = $(tablecell).html(static[x][0]).addClass('role');
@@ -92,8 +92,14 @@ $(function() {
     }
 
     function processSheetData(staticsData) {
-        displayStaticData(static1Table, staticsData.slice(0, 8), 'Static 1');
-        displayStaticData(static2Table, staticsData.slice(8, 16), 'Static 2');
+        var staticsDataLen = staticsData.length;
+        var numOfStatics = Math.floor(staticsDataLen / 8);
+        
+        for (var x = 0; x < numOfStatics; x++) {
+            var staticNum = x + 1;
+            views.statics.find('.statics-container').append($(div).addClass('static static-' + staticNum).append(table));
+            displayStaticData($('.static-' + staticNum + ' table'), staticsData.slice(x * 8, staticNum * 8), staticNum);
+        }
     }
 
     function gapiStart() {
@@ -103,7 +109,7 @@ $(function() {
         }).then(function() {
             return gapi.client.sheets.spreadsheets.values.get({
                 spreadsheetId: '1JBQIwakvprtZawyGDDs0ETaLwlitaTzoScaJEjMFf1Y',
-                range: 'Sheet1!A2:C17',
+                range: 'Sheet1!A2:C',
             });
         }).then(function(response) {
             processSheetData(response.result.values);
