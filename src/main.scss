@@ -131,20 +131,16 @@ a {
 		}
 	}
 	
-	.raid {
+	.calendar {
 		> div {
 			margin: 0 auto;
 			padding: 0 5%;
 			height: 100%;
 		}
 
-		.signup {
-			margin: 0 0 25px;
-		}
-
 		.calendar {
-			height: 80%;
-			max-height: 80%;
+			height: 85%;
+			max-height: 85%;
 		}
 
 		.timezone {
@@ -160,6 +156,45 @@ a {
 		}
 	}
 
+	.statics {
+		font-size: 18px;
+
+		table {
+			margin: 0 auto 15px;
+			padding: 0 5px;
+
+			tr {
+				td {
+					position: relative;
+					padding: 0 10px 0 0;
+				}
+
+				.static-name {
+					font-weight: 700;
+				}
+
+				.role {
+					width: 65px;
+				}
+				
+				.job {
+					min-width: 20px;
+
+					img {
+						bottom: 0;
+						height: 20px;
+						position: absolute;
+					}
+				}
+			}
+		}
+
+		.signup {
+			margin-bottom: 15px;
+			text-align: center;
+		}
+	}
+
 	.contact {
 		> div {
 			margin: 0 auto;
@@ -168,8 +203,8 @@ a {
 		}
 
 		.discord {
-			height: 70%;
-			max-height: 70%;
+			height: 65%;
+			max-height: 65%;
 			margin: 0 auto;
 		}
 
@@ -257,7 +292,7 @@ a {
 			}
 		}
 
-		.raid {
+		.calendar {
 			.mobile {
 				display: none;
 			}
