@@ -19,3 +19,6 @@ Builds to the dist folder and pushes contents of the build folder to the remote 
 
 ## Domain
 Added custom domain name to repo settings, added CNAME file in root, and updated DNS in google domain's Custom Resource settings.
+
+## Google Sheets
+The google api key does not work except on the ffxivarchon.org domain, so statics view will not work in a dev environment unless the permissions on the api key is changed.
