@@ -89,16 +89,19 @@ $(function() {
             var name = $(tablecell).html(static[x][2]).addClass('name');
             targetTable.append($(tablerow).append(role).append(job).append(name));
         }
+
+        targetTable.append($(tablerow).append($(tablecell).addClass('empty-row')));
     }
 
     function processSheetData(staticsData) {
         var staticsDataLen = staticsData.length;
         var numOfStatics = Math.floor(staticsDataLen / 8);
+
+        views.statics.find('.statics-container').append($(div).addClass('static').append(table));
         
         for (var x = 0; x < numOfStatics; x++) {
             var staticNum = x + 1;
-            views.statics.find('.statics-container').append($(div).addClass('static static-' + staticNum).append(table));
-            displayStaticData($('.static-' + staticNum + ' table'), staticsData.slice(x * 8, staticNum * 8), staticNum);
+            displayStaticData($('.static table'), staticsData.slice(x * 8, staticNum * 8), staticNum);
         }
     }
 
@@ -114,7 +117,7 @@ $(function() {
         }).then(function(response) {
             processSheetData(response.result.values);
         }, function(reason) {
-            console.log('Error: ' + reason.result.error.message);
+            console.log('Error: ' + reason && reason.result && reason.result.error.message);
         });
     };
 
