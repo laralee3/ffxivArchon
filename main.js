@@ -54,6 +54,7 @@ $(function() {
             if (views.hasOwnProperty(view)) {
                 if (target.toLowerCase() === view) {
                     views[view].addClass(visible);
+                    document.location.hash = target;
                 } else {
                     views[view].removeClass(visible);
                 }
@@ -76,12 +77,24 @@ $(function() {
         });
     }
 
+    function preloadImg() {
+        var arrayOfImages = [];
+
+        for (var x = 0; x < totalImages; x++) {
+            arrayOfImages.push('assets/gallery/' + x + '.png');
+        }
+
+        $(arrayOfImages).each(function(){
+            $('<img />').attr('src',this).appendTo('body').css('display','none');
+        });
+    }
+
     ////////////////////////////////////////////////////
     // Google Sheets logic
     ////////////////////////////////////////////////////
 
     function displayStaticData(targetTable, static, staticNum) {
-        targetTable.append($(tablerow).append($(tablecell).html('Static ' + staticNum).addClass('static-name')))
+        targetTable.append($(tablerow).append($(tablecell).html(static[0][3]).attr('colspan','4').addClass('static-name')))
 
         for (var x = 0, len = static.length; x < len; x++) {
             var role = $(tablecell).html(static[x][0]).addClass('role');
@@ -112,7 +125,7 @@ $(function() {
         }).then(function() {
             return gapi.client.sheets.spreadsheets.values.get({
                 spreadsheetId: '1JBQIwakvprtZawyGDDs0ETaLwlitaTzoScaJEjMFf1Y',
-                range: 'Sheet1!A2:C',
+                range: 'Sheet1!A2:D',
             });
         }).then(function(response) {
             processSheetData(response.result.values);
@@ -131,12 +144,22 @@ $(function() {
             opacity: 0
         }, 500);
 
+        preloadImg();
+
         setTimeout(function() {
+            var hashTarget = document.location.hash.replace('#','').toLowerCase();
+
             intro.hide();
-            views.home.add(content).add(menu).addClass(visible);
+            
+            if (document.location.hash && views.hasOwnProperty(hashTarget)) {
+                views[hashTarget].add(content).add(menu).addClass(visible);
+            } else {
+                views.home.add(content).add(menu).addClass(visible);
+                views.home.find('.hometext').addClass('slidein');
+            }
+            
             galleryAnimation();
             menu.addClass('slidein');
-            views.home.find('.hometext').addClass('slidein');
         }, 250);
     }, 1500); // Matches animation cycle for intro
 
